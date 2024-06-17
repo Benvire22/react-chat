@@ -11,7 +11,7 @@ const MessagesList: React.FC<Props> = ({messages}) => {
         <div>
             {messages.map((message) => (
                 <MessageItem
-                    key={message.id}
+                    key={message.id + message.datetime}
                     author={message.author}
                     message={message.message}
                 />
