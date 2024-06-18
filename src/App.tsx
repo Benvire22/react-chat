@@ -1,8 +1,8 @@
-import './App.css';
-import SendForm from './components/SendForm/SendForm';
 import {useEffect, useState} from 'react';
 import {Message} from './types';
+import SendForm from './components/SendForm/SendForm';
 import MessagesList from './components/MessagesList/MessagesList';
+import './App.css';
 
 const apiUrl = 'http://146.185.154.90:8000/messages?datetime=';
 
@@ -51,7 +51,7 @@ const App = () => {
     return () => {
       clearInterval(interval);
     };
-  }, [currentInterval, lastDate]);
+  }, [currentInterval, lastDate, messagesData.length]);
 
   const setMessage = async (author: string, message: string) => {
     setCurrentInterval(prevState => !prevState);
