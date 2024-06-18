@@ -27,13 +27,13 @@ const ReactChat = () => {
               if (data[data.length - 1].datetime && data[data.length - 1].datetime !== lastDate) {
                 setLastDate(data[data.length - 1].datetime);
               }
+
             } else if (data.length > 0) {
               setMessagesData(prevState => [...prevState, ...data]);
 
               if (data[data.length - 1].datetime !== lastDate) {
                 setLastDate(data[data.length - 1].datetime);
               }
-
             }
           }
         } catch (e) {
@@ -43,8 +43,8 @@ const ReactChat = () => {
           setError(true);
         }
       };
-      void fetchRequest();
 
+      void fetchRequest();
     }, 3000);
 
     return () => {
@@ -54,7 +54,6 @@ const ReactChat = () => {
 
   const setMessage = async (author: string, message: string) => {
     setCurrentInterval(prevState => !prevState);
-
     const url = 'http://146.185.154.90:8000/messages';
     const data = new URLSearchParams();
     data.set('message', message);
@@ -67,7 +66,7 @@ const ReactChat = () => {
   };
 
   return (
-    <div className="ReactChat">
+    <div className="ReactChat container-xl py-3">
       <MessagesList messages={messagesData} isError={error}/>
       <SendForm onSubmit={setMessage}/>
     </div>

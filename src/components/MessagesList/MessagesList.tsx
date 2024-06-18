@@ -10,15 +10,23 @@ interface Props {
 const MessagesList: React.FC<Props> = ({messages, isError}) => {
   return (
     <div className="Mmessages-list overflow-auto border p-3 pb-1 mb-3" style={{height: 500}}>
-      {messages.map((message) => (
-        <MessageItem
-          key={message.id + message.datetime}
-          author={message.author}
-          message={message.message}
-          datetime={message.datetime}
-        />
-      ))}
-      {isError ? <h3>Sorry, Error was occurred!</h3> : null}
+      {
+        isError
+          ? (
+            <h3 className="text-center fs-2 mt-3 text-danger">Sorry, "unexpected Error" was occurred!</h3>)
+          : (
+            <>
+              {messages.map((message) => (
+                <MessageItem
+                  key={message.id + message.datetime}
+                  author={message.author}
+                  message={message.message}
+                  datetime={message.datetime}
+                />
+              ))}
+            </>
+          )
+      }
     </div>
   );
 };

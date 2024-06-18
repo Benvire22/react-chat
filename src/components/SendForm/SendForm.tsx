@@ -13,7 +13,7 @@ interface FormData {
 const SendForm: React.FC<Props> = ({onSubmit}) => {
   const [formData, setFormData] = useState<FormData>({
     author: '',
-    message: ''
+    message: '',
   });
 
   const sendForm = (e: React.FormEvent<HTMLFormElement>) => {
@@ -21,7 +21,7 @@ const SendForm: React.FC<Props> = ({onSubmit}) => {
     onSubmit(formData.author, formData.message);
     setFormData({
       author: '',
-      message: ''
+      message: '',
     });
   };
 
@@ -37,13 +37,28 @@ const SendForm: React.FC<Props> = ({onSubmit}) => {
   return (
     <Form onSubmit={sendForm}>
       <div className="border p-3">
-        <Form.Group className="mb-3" controlId="author">
-          <Form.Control type="text" value={formData.author} name="author" id="author" placeholder="Author name"
-                        onChange={changeFormData} required/>
+        <Form.Group className="mb-3">
+          <Form.Control
+            type="text"
+            value={formData.author}
+            name="author"
+            id="author"
+            placeholder="Author name"
+            onChange={changeFormData}
+            required
+          />
         </Form.Group>
-        <Form.Group className="mb-3 d-flex align-items-center gap-4" controlId="message">
-          <Form.Control as="textarea" value={formData.message} name="message" id="message" rows={3}
-                        onChange={changeFormData} required/>
+        <Form.Group className="mb-3 d-flex align-items-center gap-4">
+          <Form.Control
+            as="textarea"
+            value={formData.message}
+            name="message"
+            id="message"
+            rows={3}
+            onChange={changeFormData}
+            placeholder="Enter some message..."
+            required
+          />
           <Button type="submit" className="fs-4 px-4 fw-bold">Send</Button>
         </Form.Group>
       </div>
