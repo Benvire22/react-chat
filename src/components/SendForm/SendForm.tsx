@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {Button, Form} from 'react-bootstrap';
 
 interface Props {
   onSubmit: (author: string, message: string) => void;
@@ -34,30 +35,19 @@ const SendForm: React.FC<Props> = ({onSubmit}) => {
   };
 
   return (
-    <form onSubmit={sendForm}>
-      <div>
-        <label htmlFor="author">Author</label>
-        <input
-          type="text"
-          name="author"
-          id="author"
-          value={formData.author}
-          onChange={changeFormData}
-          required
-        />
+    <Form onSubmit={sendForm}>
+      <div className="border p-3">
+        <Form.Group className="mb-3" controlId="author">
+          <Form.Control type="text" value={formData.author} name="author" id="author" placeholder="Author name"
+                        onChange={changeFormData} required/>
+        </Form.Group>
+        <Form.Group className="mb-3 d-flex align-items-center gap-4" controlId="message">
+          <Form.Control as="textarea" value={formData.message} name="message" id="message" rows={3}
+                        onChange={changeFormData} required/>
+          <Button type="submit" className="fs-4 px-4 fw-bold">Send</Button>
+        </Form.Group>
       </div>
-      <div>
-        <label htmlFor="message">message</label>
-        <textarea
-          name="message"
-          id="message"
-          value={formData.message}
-          onChange={changeFormData}
-          required
-        ></textarea>
-      </div>
-      <button type="submit">Send</button>
-    </form>
+    </Form>
   );
 };
 

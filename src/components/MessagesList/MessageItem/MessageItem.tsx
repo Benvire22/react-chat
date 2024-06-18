@@ -1,4 +1,5 @@
 import React from 'react';
+import {Card} from 'react-bootstrap';
 
 interface Props {
   author: string;
@@ -17,10 +18,12 @@ const MessageItem: React.FC<Props> = ({author, message, datetime}) => {
           date.getSeconds()].join(':');
 
   return (
-    <div>
-      <span>Author: {author}. {dFormat}</span>
-      <p>Message: {message}</p>
-    </div>
+  <Card className="mb-3">
+    <Card.Header>{author} <span className="text-success" >{dFormat}</span>.</Card.Header>
+    <Card.Body>
+      <Card.Title>{message}</Card.Title>
+    </Card.Body>
+  </Card>
   );
 };
 
